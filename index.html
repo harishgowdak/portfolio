@@ -569,7 +569,22 @@
     setTimeout(tick, deleting ? 45 : 90);
   }
   tick();
+
+  // Track résumé downloads as a GoatCounter event
+  document.querySelectorAll('a[href$="HarishGowdaK-Resume.pdf"]').forEach(function (el) {
+    el.addEventListener("click", function () {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: "resume-download", title: "Résumé download", event: true });
+      }
+    });
+  });
 </script>
+
+<!-- ===================== GOATCOUNTER ANALYTICS ===================== -->
+<!-- EDIT: replace YOURCODE below with your GoatCounter site code,
+     e.g. if your dashboard is harishgowdak.goatcounter.com, use "harishgowdak" -->
+<script data-goatcounter="https://harishgowdak.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>
