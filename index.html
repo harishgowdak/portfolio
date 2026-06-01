@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harish Gowda K — Senior Software Engineer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #0a0b0f;
+    --surface: #12141b;
+    --surface-2: #181b24;
+    --border: #242833;
+    --text: #eef0f5;
+    --muted: #8a909e;
+    --faint: #565d6c;
+    --accent: #cdfd50;
+    --accent-dim: rgba(205, 253, 80, 0.12);
+    --display: "Syne", sans-serif;
+    --mono: "JetBrains Mono", monospace;
+    --max: 980px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 90%);
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(10,11,15,0.7);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+  .logo { font-family: var(--mono); font-weight: 700; letter-spacing: -0.5px; font-size: 15px; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 26px; font-size: 13px; }
+  .nav-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* ---------- Hero ---------- */
+  header { padding: 110px 0 90px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12.5px; color: var(--accent); letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.8rem, 8vw, 5.2rem);
+    line-height: 0.98;
+    letter-spacing: -2px;
+    margin-bottom: 22px;
+  }
+  h1 .accent { color: var(--accent); }
+
+  .role-line { font-size: clamp(1rem, 2.5vw, 1.35rem); color: var(--muted); margin-bottom: 26px; }
+  .role-line .typed { color: var(--text); border-right: 2px solid var(--accent); padding-right: 2px; }
+
+  .lead { max-width: 610px; color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 38px; }
+  .lead strong { color: var(--text); font-weight: 500; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    font-family: var(--mono); font-size: 13.5px; font-weight: 500;
+    padding: 12px 20px; border-radius: 8px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 9px;
+    transition: transform 0.2s, background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .btn-primary { background: var(--accent); color: #0a0b0f; font-weight: 700; }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .stats { display: flex; flex-wrap: wrap; gap: 48px; margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--border); }
+  .stat .num { font-family: var(--display); font-weight: 800; font-size: 2.1rem; color: var(--accent); letter-spacing: -1px; }
+  .stat .cap { font-size: 12px; color: var(--faint); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 72px 0; }
+  .sec-label {
+    font-size: 12.5px; color: var(--faint); letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 26px; display: flex; align-items: center; gap: 14px;
+  }
+  .sec-label::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
+  h2 { font-family: var(--display); font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -1px; margin-bottom: 28px; }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-text p { color: var(--muted); margin-bottom: 16px; line-height: 1.85; }
+  .about-text strong { color: var(--text); font-weight: 500; }
+  .now-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+  .now-card .now-head { font-size: 12px; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; }
+  .now-item { display: flex; gap: 12px; align-items: baseline; margin-bottom: 14px; font-size: 13.5px; }
+  .now-item:last-child { margin-bottom: 0; }
+  .now-item .marker { color: var(--accent); }
+  .now-item .label { color: var(--text); }
+  .now-item .sub { color: var(--faint); display: block; font-size: 12.5px; }
+
+  /* ---------- Impact ---------- */
+  .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 720px) { .impact-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .impact-grid { grid-template-columns: 1fr; } }
+  .impact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: border-color 0.2s, transform 0.2s; }
+  .impact-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .impact-card .big { font-family: var(--display); font-weight: 800; font-size: 2rem; color: var(--accent); letter-spacing: -1px; line-height: 1; margin-bottom: 12px; }
+  .impact-card .desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ---------- Experience timeline ---------- */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ""; position: absolute; left: 4px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+  .tl-item { position: relative; padding-bottom: 40px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -28px; top: 6px; width: 9px; height: 9px;
+    border-radius: 50%; background: var(--bg); border: 2px solid var(--accent);
+  }
+  .tl-meta { font-size: 12px; color: var(--faint); letter-spacing: 0.5px; margin-bottom: 6px; }
+  .tl-role { font-family: var(--display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
+  .tl-company { color: var(--accent); font-size: 14px; margin-bottom: 12px; }
+  .tl-item ul { list-style: none; }
+  .tl-item li { color: var(--muted); font-size: 13.5px; line-height: 1.75; padding-left: 18px; position: relative; margin-bottom: 7px; }
+  .tl-item li::before { content: "\25B9"; position: absolute; left: 0; color: var(--accent); }
+
+  /* ---------- Skills ---------- */
+  .skill-group { margin-bottom: 28px; }
+  .skill-group h3 { font-family: var(--mono); font-size: 13px; color: var(--faint); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; font-weight: 500; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    font-size: 13px; padding: 8px 15px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .chip.hot { border-color: var(--accent-dim); color: var(--accent); }
+
+  /* ---------- Projects ---------- */
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 720px) { .projects { grid-template-columns: 1fr; } }
+  .project {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 26px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column;
+    transition: border-color 0.25s, transform 0.25s, background 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .project:hover { border-color: var(--accent); transform: translateY(-4px); background: var(--surface-2); }
+  .project .pnum { font-size: 12px; color: var(--accent); margin-bottom: 16px; }
+  .project h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .project .porg { font-size: 12px; color: var(--faint); margin-bottom: 14px; }
+  .project p { color: var(--muted); font-size: 13.5px; line-height: 1.75; margin-bottom: 20px; flex-grow: 1; }
+  .project .stack { display: flex; flex-wrap: wrap; gap: 8px; }
+  .project .stack span { font-size: 11.5px; color: var(--faint); padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; }
+
+  /* ---------- Contact ---------- */
+  .contact { text-align: center; padding: 90px 0; }
+  .contact h2 { margin-bottom: 18px; }
+  .contact p { color: var(--muted); max-width: 460px; margin: 0 auto 32px; }
+  .mail-link {
+    font-family: var(--display); font-weight: 700; font-size: clamp(1.3rem, 5vw, 2.3rem);
+    color: var(--text); text-decoration: none; letter-spacing: -1px;
+    border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s;
+    word-break: break-all;
+  }
+  .mail-link:hover { color: var(--accent); border-color: var(--accent); }
+  .contact-sub { margin-top: 22px; font-size: 13px; color: var(--faint); }
+  .contact-sub a { color: var(--muted); text-decoration: none; }
+  .contact-sub a:hover { color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 0; }
+  .foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12.5px; color: var(--faint); }
+  .foot-inner a { color: var(--muted); text-decoration: none; margin-left: 20px; transition: color 0.2s; }
+  .foot-inner a:hover { color: var(--accent); }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(.2,.6,.2,1), transform 0.7s cubic-bezier(.2,.6,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .stagger > * { opacity: 0; transform: translateY(20px); animation: rise 0.8s cubic-bezier(.2,.6,.2,1) forwards; }
+  .stagger > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger > *:nth-child(2) { animation-delay: 0.15s; }
+  .stagger > *:nth-child(3) { animation-delay: 0.25s; }
+  .stagger > *:nth-child(4) { animation-delay: 0.35s; }
+  .stagger > *:nth-child(5) { animation-delay: 0.45s; }
+  .stagger > *:nth-child(6) { animation-delay: 0.55s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">HG<span>.</span>K</div>
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#impact">impact</a>
+      <a href="#experience">experience</a>
+      <a href="#skills">skills</a>
+      <a href="#work">work</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header>
+  <div class="wrap stagger">
+    <div class="eyebrow"><span class="dot"></span> Open to senior opportunities · Bengaluru, IN</div>
+    <h1>Harish <span class="accent">Gowda K</span></h1>
+    <div class="role-line">I build <span class="typed" id="typed">serverless systems</span></div>
+    <p class="lead">
+      Senior Software Engineer, <strong>9.5 years</strong> deep in scalable backend systems
+      on <strong>AWS</strong>. I design <strong>event-driven, serverless, and Kubernetes-based
+      architectures</strong> in Node.js and Nest.js — and ship them faster with AI-assisted
+      development, without trading away quality. I own features end to end and leave the
+      codebase better than I found it.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:harishgowdak18@gmail.com">Get in touch</a>
+      <a class="btn btn-ghost" href="HarishGowdaK-Resume.pdf" download>Résumé ↓</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/harishgowdak" target="_blank" rel="noopener">LinkedIn →</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">9.5</div><div class="cap">Years experience</div></div>
+      <div class="stat"><div class="num">1M+</div><div class="cap">Events / day</div></div>
+      <div class="stat"><div class="num">99.99%</div><div class="cap">Availability</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label reveal">01 — About</div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <h2>About me</h2>
+        <p>
+          I build <strong>distributed systems that stay fast and reliable under real load</strong>.
+          My home turf is AWS — Lambda, DynamoDB, Step Functions, and Nest.js services on EKS,
+          stitched together with event-driven patterns and Redis caching. The kind of backend
+          that quietly handles a million events a day and never makes the news.
+        </p>
+        <p>
+          I operate at a <strong>senior IC level</strong> with full feature ownership, treat
+          <strong>infrastructure as code</strong> (CDK, CloudFormation) as non-negotiable, and
+          have mentored engineers toward senior-level judgment. I'm also a <strong>pragmatic
+          adopter of AI tooling</strong> — Cursor, Claude, Copilot, Gemini — using it daily to
+          move faster while knowing exactly when <em>not</em> to trust the model.
+        </p>
+      </div>
+      <div class="now-card reveal">
+        <div class="now-head">// Currently</div>
+        <div class="now-item">
+          <span class="marker">&#9657;</span>
+          <span>
+            <span class="label">Open to senior backend / cloud roles</span>
+            <span class="sub">IC &amp; lead-level, remote or Bengaluru</span>
+          </span>
+        </div>
+        <div class="now-item">
+          <span class="marker">&#9657;</span>
+          <span>
+            <span class="label">Exploring AI-assisted development</span>
+            <span class="sub">Prompt patterns, verification, team adoption</span>
+          </span>
+        </div>
+        <div class="now-item">
+          <span class="marker">&#9657;</span>
+          <span>
+            <span class="label">Sharpening DSA fundamentals</span>
+            <span class="sub">Pattern-by-pattern in TypeScript</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IMPACT ===================== -->
+<section id="impact">
+  <div class="wrap">
+    <div class="sec-label reveal">02 — Impact</div>
+    <h2 class="reveal">Selected outcomes</h2>
+    <div class="impact-grid">
+      <div class="impact-card reveal">
+        <div class="big">1M+</div>
+        <div class="desc">Events processed per day across event-driven systems at 99.99% availability.</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="big">−60%</div>
+        <div class="desc">API latency cut (and DB load down 35%) via Redis caching &amp; rate-limiting.</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="big">−50%</div>
+        <div class="desc">Deployment time reduced, with ~20% lower cloud cost through CDK-driven IaC &amp; right-sizing.</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="big">~35%</div>
+        <div class="desc">Faster routine feature delivery by integrating AI tooling into daily workflow.</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="big">~25%</div>
+        <div class="desc">Faster PR review turnaround after rolling out AI-assisted code review across the team.</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="big">7</div>
+        <div class="desc">Engineers mentored toward senior-level cloud architecture &amp; code-quality competence.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-label reveal">03 — Experience</div>
+    <h2 class="reveal">Where I've worked</h2>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-meta">FEB 2025 — MAR 2026 · BENGALURU</div>
+        <div class="tl-role">Senior Software Engineer</div>
+        <div class="tl-company">Pro Football Focus</div>
+        <ul>
+          <li>Built scalable Node.js/TypeScript backend services — improving throughput ~30% and cutting latency ~20% across distributed systems.</li>
+          <li>Shipped serverless infrastructure on AWS with CDK + PostgreSQL, powering APIs for 10,000+ concurrent users.</li>
+          <li>Owned end-to-end delivery of 5+ critical features with globally distributed teams, and contributed to React-based frontend integration.</li>
+          <li>Wove Cursor, Claude, Gemini, and Copilot into daily work — cutting lead time on routine modules ~35%.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-meta">JUL 2021 — FEB 2025 · BENGALURU</div>
+        <div class="tl-role">Lead Senior Software Engineer</div>
+        <div class="tl-company">Virtusa</div>
+        <ul>
+          <li>Designed serverless architectures (Lambda, API Gateway, DynamoDB, S3) delivering 99.99% availability for enterprise apps.</li>
+          <li>Built modular Nest.js microservices with DI and guards/interceptors — +40% maintainability, −25% dev time.</li>
+          <li>Ran containerized workloads on EKS with Helm, HPA, and ingress for zero-downtime multi-env rollouts.</li>
+          <li>Added Redis (ElastiCache) for caching, sessions, and rate limiting — up to −60% latency, −35% DB load.</li>
+          <li>Led event-driven systems (EventBridge, SQS, SNS, Step Functions, ECS) processing 1M+ events/day; automated IaC for −50% deploy time, −20% cost.</li>
+          <li>Mentored 7 engineers and made Copilot/Claude a standard, responsibly-used part of the toolchain.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-meta">DEC 2016 — JUL 2021 · BENGALURU</div>
+        <div class="tl-role">Backend Developer</div>
+        <div class="tl-company">Soft Suave Technologies</div>
+        <ul>
+          <li>Built applications with Node.js and AWS (EC2, S3, Lambda, RDS).</li>
+          <li>Optimized MySQL queries, schemas, and indexes for ~30% better DB performance.</li>
+          <li>Implemented IAM policies and SSL across AWS and DB layers for compliance and data integrity.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-label reveal">04 — Stack</div>
+    <h2 class="reveal">What I work with</h2>
+    <div class="reveal">
+      <div class="skill-group">
+        <h3>Languages &amp; Frameworks</h3>
+        <div class="chips">
+          <span class="chip">Node.js</span>
+          <span class="chip">Nest.js</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">React</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>AWS</h3>
+        <div class="chips">
+          <span class="chip">Lambda</span>
+          <span class="chip">API Gateway</span>
+          <span class="chip">DynamoDB</span>
+          <span class="chip">S3</span>
+          <span class="chip">EventBridge</span>
+          <span class="chip">SNS / SQS</span>
+          <span class="chip">Step Functions</span>
+          <span class="chip">ECS</span>
+          <span class="chip">EKS</span>
+          <span class="chip">EC2</span>
+          <span class="chip">CloudWatch</span>
+          <span class="chip">IAM</span>
+          <span class="chip">VPC</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Data &amp; Caching</h3>
+        <div class="chips">
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">Redis (ElastiCache)</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>IaC &amp; DevOps</h3>
+        <div class="chips">
+          <span class="chip">AWS CDK</span>
+          <span class="chip">CloudFormation</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Kubernetes</span>
+          <span class="chip">GitHub Actions</span>
+          <span class="chip">Jenkins</span>
+          <span class="chip">CodePipeline</span>
+          <span class="chip">Git</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>AI Tooling</h3>
+        <div class="chips">
+          <span class="chip hot">Cursor</span>
+          <span class="chip hot">Claude</span>
+          <span class="chip hot">Gemini</span>
+          <span class="chip hot">GitHub Copilot</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WORK ===================== -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-label reveal">05 — Key projects</div>
+    <h2 class="reveal">Things I've built</h2>
+    <div class="projects">
+      <a class="project reveal" href="#" target="_blank" rel="noopener">
+        <div class="pnum">PROJECT 01</div>
+        <h3>Player Props &amp; Touchdown Finder</h3>
+        <div class="porg">Pro Football Focus</div>
+        <p>Player-prop analytics platform processing 10K+ historical records per season with real-time sportsbook odds across 10+ markets at sub-second latency. Used Cursor + Claude to rapidly prototype and refactor legacy projection logic.</p>
+        <div class="stack"><span>Node.js</span><span>TypeScript</span><span>AWS</span><span>PostgreSQL</span></div>
+      </a>
+      <a class="project reveal" href="#" target="_blank" rel="noopener">
+        <div class="pnum">PROJECT 02</div>
+        <h3>Digital Installment Lending</h3>
+        <div class="porg">Virtusa</div>
+        <p>BNPL feature on Lambda, DynamoDB, ECS, and Nest.js running on EKS — supporting 3/6/9-month plans with Redis-backed idempotency for safe retries under peak load.</p>
+        <div class="stack"><span>Nest.js</span><span>EKS</span><span>DynamoDB</span><span>Redis</span></div>
+      </a>
+      <a class="project reveal" href="#" target="_blank" rel="noopener">
+        <div class="pnum">PROJECT 03</div>
+        <h3>TIBCO → AWS Migration</h3>
+        <div class="porg">Virtusa</div>
+        <p>Migrated legacy TIBCO APIs to AWS serverless (Lambda, API Gateway, DynamoDB, S3) with CDK IaC. Leaned on Claude and Gemini to analyze unfamiliar legacy code and draft first-pass Node.js implementations for review.</p>
+        <div class="stack"><span>AWS CDK</span><span>Lambda</span><span>API Gateway</span><span>S3</span></div>
+      </a>
+      <a class="project reveal" href="#" target="_blank" rel="noopener">
+        <div class="pnum">PROJECT 04</div>
+        <h3>Future Dated Instruction</h3>
+        <div class="porg">Virtusa</div>
+        <p>APIs to schedule one-time and recurring transactions — bill payments and transfers — with full CRUD, audit trails, and limit checks, built on Lambda, DynamoDB, and EventBridge Scheduler.</p>
+        <div class="stack"><span>Lambda</span><span>DynamoDB</span><span>EventBridge</span></div>
+      </a>
+      <a class="project reveal" href="#" target="_blank" rel="noopener">
+        <div class="pnum">PROJECT 05</div>
+        <h3>Plug2Teams</h3>
+        <div class="porg">Virtusa</div>
+        <p>Serverless integration connecting Microsoft Teams to PBX / contact-centre systems — adding a dial pad and enabling calls to any number from any device, anywhere.</p>
+        <div class="stack"><span>Serverless</span><span>Node.js</span><span>AWS</span></div>
+      </a>
+      <a class="project reveal" href="#" target="_blank" rel="noopener">
+        <div class="pnum">PROJECT 06</div>
+        <h3>Virujh &amp; Delivery System</h3>
+        <div class="porg">Soft Suave Technologies</div>
+        <p>Healthcare consultation platform with doctor–patient video appointments and integrated payments, plus a GPS-based delivery tracker with real-time alerts, dashboard analytics, and barcoded invoices / proof of delivery.</p>
+        <div class="stack"><span>Node.js</span><span>AWS</span><span>Payments</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="contact">
+  <div class="wrap reveal">
+    <div class="sec-label" style="justify-content:center;">06 — Contact</div>
+    <h2>Let's build something</h2>
+    <p>Backend, cloud, or distributed-systems work that needs to scale and stay up — that's where I do my best work. If that sounds like your problem, let's talk.</p>
+    <a class="mail-link" href="mailto:harishgowdak18@gmail.com">harishgowdak18@gmail.com</a>
+    <div class="contact-sub">
+      <a href="HarishGowdaK-Resume.pdf" download>Download résumé (PDF)</a>
+      &nbsp;·&nbsp; <a href="https://linkedin.com/in/harishgowdak" target="_blank" rel="noopener">in/harishgowdak</a>
+      &nbsp;·&nbsp; Bengaluru, India
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap foot-inner">
+    <div>&copy; <span id="year"></span> Harish Gowda K — built with care.</div>
+    <div>
+      <a href="HarishGowdaK-Resume.pdf" download>Résumé</a>
+      <a href="https://linkedin.com/in/harishgowdak" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:harishgowdak18@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+
+  var roles = ["serverless systems", "event-driven APIs", "with Node & Nest.js", "on Kubernetes", "that scale"];
+  var typed = document.getElementById("typed");
+  var r = 0, c = 0, deleting = false;
+  function tick() {
+    var word = roles[r];
+    typed.textContent = word.substring(0, c);
+    if (!deleting && c < word.length) { c++; }
+    else if (!deleting && c === word.length) { deleting = true; return setTimeout(tick, 1600); }
+    else if (deleting && c > 0) { c--; }
+    else { deleting = false; r = (r + 1) % roles.length; }
+    setTimeout(tick, deleting ? 45 : 90);
+  }
+  tick();
+</script>
+
+</body>
+</html>
